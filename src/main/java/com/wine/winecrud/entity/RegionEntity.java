@@ -1,17 +1,28 @@
 package com.wine.winecrud.entity;
 
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
-@Table(name = "winery")
-public class WineryEntity {
+public class RegionEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id;
 
     private String name;
+    private String country;
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
 
     public int getId() {
         return Id;
