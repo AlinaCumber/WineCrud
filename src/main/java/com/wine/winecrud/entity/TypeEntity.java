@@ -1,12 +1,10 @@
 package com.wine.winecrud.entity;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "type")
 public class TypeEntity {
 
     @Id

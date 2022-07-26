@@ -2,6 +2,8 @@ package com.wine.winecrud.controller;
 
 
 import com.wine.winecrud.entity.RegionEntity;
+import com.wine.winecrud.entity.RegionEntity;
+import com.wine.winecrud.entity.WineryEntity;
 import com.wine.winecrud.service.RegionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -46,6 +48,29 @@ public class RegionController {
         return ResponseEntity.ok(region);
     }
 
+    @DeleteMapping
+    public ResponseEntity<RegionEntity> deleteType(@RequestBody RegionEntity regionEntity)
+    {
+        RegionEntity region = regionService.delete(regionEntity);
+        return ResponseEntity.ok(region);
+    }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<RegionEntity> deleteTypeById(@PathVariable("id") int id)
+    {
+        RegionEntity regionEntity = regionService.getRegionById(id);
+        if(regionEntity != null)
+        {
+            regionService.deleteById(id);
+        }
+        return ResponseEntity.ok(regionEntity);
+    }
+
+    @PutMapping
+    public ResponseEntity<RegionEntity> updateType(@RequestBody RegionEntity serviceEntity)
+    {
+        RegionEntity service = regionService.update(serviceEntity);
+        return ResponseEntity.ok(service);
+    }
 
 }
