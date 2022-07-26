@@ -2,6 +2,7 @@ package com.wine.winecrud.service;
 
 
 import com.wine.winecrud.entity.RegionEntity;
+import com.wine.winecrud.entity.TypeEntity;
 import com.wine.winecrud.repository.RegionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,4 +28,22 @@ public class RegionService {
 
         return regionRepository.save(regionNew);
     }
+
+    public RegionEntity update(RegionEntity regionUpdate)
+    {
+        return regionRepository.save(regionUpdate);
+    }
+
+    public RegionEntity delete(RegionEntity regionDelete)
+    {
+        regionRepository.delete(regionDelete);
+        return regionDelete;
+    }
+
+    public void deleteById(int Id)
+    {
+        regionRepository.deleteById(Id);
+
+    }
+    
 }

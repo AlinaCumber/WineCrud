@@ -1,6 +1,7 @@
 package com.wine.winecrud.service;
 
 
+import com.wine.winecrud.entity.TypeEntity;
 import com.wine.winecrud.entity.WineryEntity;
 import com.wine.winecrud.repository.WineryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,24 @@ public class WineryService {
 
     public WineryEntity save(WineryEntity wineryNew)
     {
-
         return wineryRepository.save(wineryNew);
     }
+
+    public WineryEntity update(WineryEntity typeUpdate)
+    {
+        return wineryRepository.save(typeUpdate);
+    }
+
+    public WineryEntity delete(WineryEntity wineryDelete)
+    {
+         wineryRepository.delete(wineryDelete);
+         return wineryDelete;
+    }
+    public void deleteById(int Id)
+    {
+        wineryRepository.deleteById(Id);
+
+    }
+
+
 }
