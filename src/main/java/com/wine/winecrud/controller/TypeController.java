@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -41,7 +42,7 @@ public class TypeController {
     }
 
     @PostMapping
-    public ResponseEntity<TypeEntity> saveType(@RequestBody TypeEntity typeEntity)
+    public ResponseEntity<TypeEntity> saveType(@Valid @RequestBody TypeEntity typeEntity)
     {
         TypeEntity type = typeService.save(typeEntity);
         return ResponseEntity.ok(type);

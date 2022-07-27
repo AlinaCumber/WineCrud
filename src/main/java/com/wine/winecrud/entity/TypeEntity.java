@@ -2,6 +2,7 @@ package com.wine.winecrud.entity;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "type")
@@ -10,6 +11,8 @@ public class TypeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id;
+
+    @NotBlank(message = "Name is mandatory")
     private String name;
 
     public int getId() {

@@ -30,7 +30,7 @@ public class WineService {
     }
 
     public WineEntity updateWine(WineEntity wine){
-        return wineRepository.save(wine);
+         return wineRepository.save(wine);
     }
 
     public List<WineEntity> topRatingPrice (){

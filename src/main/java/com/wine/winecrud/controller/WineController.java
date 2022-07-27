@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -25,7 +26,7 @@ public class WineController {
     }
 
     @PostMapping
-    public ResponseEntity<WineEntity> saveWine(@RequestBody WineEntity wine) {
+    public ResponseEntity<WineEntity> saveWine(@Valid @RequestBody WineEntity wine) {
         WineEntity newWine = wineService.saveWine(wine);
         return ResponseEntity.ok(newWine);
     }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -42,7 +43,7 @@ public class WineryController {
     }
 
     @PostMapping
-    public ResponseEntity<WineryEntity> saveWinery(@RequestBody WineryEntity wineryEntity)
+    public ResponseEntity<WineryEntity> saveWinery(@Valid @RequestBody WineryEntity wineryEntity)
     {
         WineryEntity winery = wineryService.save(wineryEntity);
         return ResponseEntity.ok(winery);
