@@ -34,7 +34,7 @@ public class WineController {
     public ResponseEntity<WineEntity> wineById(@PathVariable("id") int id){
         WineEntity newWine =  wineService.findById(id);
         if(newWine == null){
-            return ResponseEntity.notFound().build();
+
         }
         return ResponseEntity.ok(newWine);
     }

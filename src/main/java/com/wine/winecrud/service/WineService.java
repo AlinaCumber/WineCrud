@@ -32,4 +32,12 @@ public class WineService {
     public WineEntity updateWine(WineEntity wine){
         return wineRepository.save(wine);
     }
+
+    public List<WineEntity> topRatingPrice (){
+        return wineRepository.topRatingPrice();
+    }
+
+    public List<WineEntity> topVintage(){
+        return wineRepository.bestVintage();
+    }
 }

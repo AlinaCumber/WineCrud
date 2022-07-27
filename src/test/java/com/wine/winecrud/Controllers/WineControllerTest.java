@@ -1,4 +1,4 @@
-package com.wine.winecrud.controller;
+package com.wine.winecrud.Controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

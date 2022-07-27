@@ -14,6 +14,20 @@ public class RegionEntity {
     private String name;
     private String country;
 
+    public RegionEntity(int id, String name, String country) {
+        Id = id;
+        this.name = name;
+        this.country = country;
+    }
+
+    public RegionEntity() {
+    }
+
+    public RegionEntity(String name, String country) {
+        this.name = name;
+        this.country = country;
+    }
+
     public String getCountry() {
         return country;
     }
