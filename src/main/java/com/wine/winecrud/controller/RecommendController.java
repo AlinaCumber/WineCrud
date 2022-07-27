@@ -1,6 +1,6 @@
 package com.wine.winecrud.controller;
 
-<<<<<<< HEAD
+
 import com.wine.winecrud.entity.WineEntity;
 import com.wine.winecrud.service.WineService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-=======
+
 
 import com.wine.winecrud.entity.RegionEntity;
 import com.wine.winecrud.entity.WineEntity;
@@ -30,12 +30,11 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
->>>>>>> localWorkCarlos
+
 
 @RestController
 @RequestMapping("/recommend")
 public class RecommendController {
-<<<<<<< HEAD
 
     @Autowired
     WineService wineService;
@@ -58,9 +57,8 @@ public class RecommendController {
 
         return new ResponseEntity<>(w.collect(Collectors.toList()), HttpStatus.OK);
     }
-=======
-    @Autowired
-    private WineService wineService;
+
+
 
     @GetMapping("/best")
     public List<WineEntity> getBestWines() {
@@ -95,5 +93,5 @@ public class RecommendController {
         return wines;
     }
 
->>>>>>> localWorkCarlos
+
 }
