@@ -30,5 +30,29 @@ public class RecommendController {
         return wines;
     }
 
+    @GetMapping("/best/{top}")
+    public List<WineEntity> getBestWinesTopX(@PathVariable("top") int top) {
+
+        List<WineEntity> wines= wineService.findAllWines().stream().sorted(Collections.reverseOrder(Comparator.comparing(WineEntity::getRating))).limit(top).collect(Collectors.toList());
+
+        return wines;
+    }
+
+    @GetMapping("/expensive")
+    public List<WineEntity> getExpensiveWines() {
+
+        List<WineEntity> wines= wineService.findAllWines().stream().sorted(Collections.reverseOrder(Comparator.comparing(WineEntity::getPrice))).limit(10).collect(Collectors.toList());
+
+        return wines;
+    }
+
+
+    @GetMapping("/expensive/{top}")
+    public List<WineEntity> getExpensiveWinesTopX(@PathVariable("top") int top) {
+
+        List<WineEntity> wines= wineService.findAllWines().stream().sorted(Collections.reverseOrder(Comparator.comparing(WineEntity::getPrice))).limit(top).collect(Collectors.toList());
+
+        return wines;
+    }
 
 }
