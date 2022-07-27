@@ -107,7 +107,6 @@ public class RecommendController {
 
     @GetMapping("/expensive/{top}")
     public List<WineEntity> getExpensiveWinesTopX(@PathVariable("top") int top) {
-
         List<WineEntity> wines= wineService.findAllWines().stream().sorted(Collections.reverseOrder(Comparator.comparing(WineEntity::getPrice))).limit(top).collect(Collectors.toList());
 
         return wines;
