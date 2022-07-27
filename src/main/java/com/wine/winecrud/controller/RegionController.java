@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -42,7 +43,7 @@ public class RegionController {
     }
 
     @PostMapping
-    public ResponseEntity<RegionEntity> saveRegion(@RequestBody RegionEntity regionEntity)
+    public ResponseEntity<RegionEntity> saveRegion(@Valid @RequestBody RegionEntity regionEntity)
     {
         RegionEntity region = regionService.save(regionEntity);
         return ResponseEntity.ok(region);

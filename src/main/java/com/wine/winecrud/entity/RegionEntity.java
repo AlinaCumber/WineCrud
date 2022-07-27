@@ -2,6 +2,7 @@ package com.wine.winecrud.entity;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "region")
@@ -11,7 +12,9 @@ public class RegionEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id;
 
+    @NotBlank(message = "Name is mandatory")
     private String name;
+    @NotBlank(message = "Email is mandatory")
     private String country;
 
     public String getCountry() {

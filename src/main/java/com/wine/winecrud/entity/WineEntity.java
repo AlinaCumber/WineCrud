@@ -1,6 +1,10 @@
 package com.wine.winecrud.entity;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
+import javax.validation.constraints.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "wine")
@@ -9,17 +13,52 @@ public class WineEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @NotBlank(message = "Name is mandatory")
     private String name;
+
+    @NotBlank(message = "Year is mandatory")
+    @Min(1900)
+    @Max(2022)
     private String year;
+
+    @NotNull( message = "rating is mandatory")
+    @Min(0)
+    @Max(5)
     private float rating;
+
+    @NotNull( message = "Number of reviews is mandatory")
+    @Min(0)
     private int num_reviews;
+
+    @NotNull( message = "Price is mandatory")
+    @Min(0)
     private float price;
+
+    @NotBlank(message = "Body is mandatory")
+    @Min(1)
+    @Max(5)
     private String body;
+
+    @NotBlank(message = "Acidity is mandatory")
+    @Min(1)
+    @Max(5)
     private String acidity;
+
+    @NotNull( message = "Winery id is mandatory")
+    @Min(0)
     private int winery_id;
+
+
+    @NotNull( message = "Type id is mandatory")
+    @Min(0)
     private int type_id;
+
+    @NotNull( message = "Region id is mandatory")
+    @Min(0)
     private int region_id;
 
+    @NotBlank(message = "Type is mandatory")
     private String type;
 
     public int getId() {
@@ -117,4 +156,6 @@ public class WineEntity {
     public void setRegion_id(int region_id) {
         this.region_id = region_id;
     }
+
+
 }
