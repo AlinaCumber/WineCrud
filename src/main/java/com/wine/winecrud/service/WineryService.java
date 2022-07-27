@@ -2,6 +2,7 @@ package com.wine.winecrud.service;
 
 
 import com.wine.winecrud.entity.TypeEntity;
+import com.wine.winecrud.entity.WineEntity;
 import com.wine.winecrud.entity.WineryEntity;
 import com.wine.winecrud.repository.WineryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,8 @@ public class WineryService {
          wineryRepository.delete(wineryDelete);
          return wineryDelete;
     }
+
+
     public void deleteById(int Id)
     {
         wineryRepository.deleteById(Id);
