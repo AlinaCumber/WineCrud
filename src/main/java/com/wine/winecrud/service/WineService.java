@@ -42,21 +42,30 @@ public class WineService {
         return wineRepository.bestVintage();
     }
 
-   /*public List<Object[]> findBestYear(Pageable pageable){
-        return wineRepository.findBestYear(pageable);
+   /* public List<WineEntity> findBestYear(Pageable p){
+        return wineRepository.findBestYear(p);
     }
 
-    public List<WineEntity> findTop10Rating(String year, Pageable pageable) {
-        return wineRepository.findTop10Rating(year, pageable);*/
+    public List<WineEntity> findTop10Rating(String year) {
+        return wineRepository.findTop10Rating(year);
+    }*/
 
 
-    /*public List<String> findWineBestYear(int numItems){
+    public List<String> findWineBestYear(int numItems){
         return wineRepository.findBestYears().subList(0, numItems);
     }
 
     public List<WineEntity> findByYear(String year){
         return wineRepository.findByYear(year);
-    }*/
+    }
+
+    public List<String> findBestYear (Pageable pageable){
+        return wineRepository.findBestYear(pageable);
+    }
+
+    public List<WineEntity> findTopYears(Pageable pageable,String year){
+        return wineRepository.findTopBestWine(pageable,year);
+    }
 
 
 

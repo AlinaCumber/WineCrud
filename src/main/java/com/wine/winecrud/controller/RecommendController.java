@@ -2,7 +2,6 @@ package com.wine.winecrud.controller;
 
 
 import com.wine.winecrud.entity.WineEntity;
-import com.wine.winecrud.repository.WineRepository;
 import com.wine.winecrud.service.WineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -13,24 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.awt.print.Pageable;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
-import com.wine.winecrud.entity.RegionEntity;
-import com.wine.winecrud.entity.WineEntity;
-import com.wine.winecrud.service.WineService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 @RestController
@@ -52,21 +41,22 @@ public class RecommendController {
         return new ResponseEntity<>(w.collect(Collectors.toList()), HttpStatus.OK);
     }
 
-    @GetMapping("/vintage")
+    /*@GetMapping("/vintage2")
     public ResponseEntity<List<WineEntity>> getVintage(@RequestParam int top) {
         List<WineEntity> wines = wineService.topVintage();
 
         Stream<WineEntity> w = wines.stream().limit(top);
 
         return new ResponseEntity<>(w.collect(Collectors.toList()), HttpStatus.OK);
-    }
-
+    }*/
 
     /*@GetMapping("/vintage")
-    public ResponseEntity<Map<String, List<WineEntity>>> getVintageWine(@RequestParam Integer top){
+
+    public ResponseEntity<Map<String, List<WineEntity>>> getVintageWine(@RequestParam int top){
 
         Map<String, List<WineEntity>> map = new HashMap<>();
 
+        wineService.findBestYear(PageRequest.of(0,top)).forEach(s -> map.put(s, wineService.findTopYears(s)));
         List<String> years = wineService.findWineBestYear(top);
 
         for(String year : years){
@@ -76,6 +66,18 @@ public class RecommendController {
 
     }*/
 
+    @GetMapping("/vintage")
+    Object topVintage(@RequestParam int top){
+
+        var years = wineService.findBestYear(PageRequest.of(0,top));
+        Map<String, List<WineEntity>> map = new HashMap<>();
+        for(String year : years){
+            map.put(year, wineService.findByYear(year));
+
+        }
+        return map;
+
+    }
 
 
 
@@ -83,7 +85,11 @@ public class RecommendController {
     @GetMapping("/best")
     public List<WineEntity> getBestWines() {
 
-        List<WineEntity> wines= wineService.findAllWines().stream().sorted(Collections.reverseOrder(Comparator.comparing(WineEntity::getRating))).limit(10).collect(Collectors.toList());
+        List<WineEntity> wines=
+                wineService.findAllWines()
+                        .stream()
+                        .sorted(Collections.reverseOrder(Comparator.comparing(WineEntity::getRating))).limit(10)
+                        .collect(Collectors.toList());
 
         return wines;
     }
