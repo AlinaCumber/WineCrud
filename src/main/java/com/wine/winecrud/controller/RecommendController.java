@@ -71,13 +71,6 @@ public class RecommendController {
 
 
 
-    @GetMapping("/best")
-    public List<WineEntity> getBestWines() {
-
-        List<WineEntity> wines= wineService.findAllWines().stream().sorted(Collections.reverseOrder(Comparator.comparing(WineEntity::getRating))).limit(10).collect(Collectors.toList());
-
-        return wines;
-    }
 
 
     @GetMapping("/best")
