@@ -26,19 +26,19 @@ public class WineService {
         return wineRepository.findById(id).orElse(null);
     }
 
-    public void deleteById(int id){
+    public void deleteById(int id) {
         wineRepository.deleteById(id);
     }
 
-    public WineEntity updateWine(WineEntity wine){
-         return wineRepository.save(wine);
+    public WineEntity updateWine(WineEntity wine) {
+        return wineRepository.save(wine);
     }
 
-    public List<WineEntity> topRatingPrice (){
+    public List<WineEntity> topRatingPrice() {
         return wineRepository.topRatingPrice();
     }
 
-    public List<WineEntity> topVintage(){
+    public List<WineEntity> topVintage() {
         return wineRepository.bestVintage();
     }
 
@@ -50,22 +50,24 @@ public class WineService {
         return wineRepository.topExpensiveWines();
     }
 
-   /*public List<Object[]> findBestYear(Pageable pageable){
-        return wineRepository.findBestYear(pageable);
-    }
-
-    public List<WineEntity> findTop10Rating(String year, Pageable pageable) {
-        return wineRepository.findTop10Rating(year, pageable);*/
 
 
-    /*public List<String> findWineBestYear(int numItems){
+
+    public List<String> findWineBestYear(int numItems) {
         return wineRepository.findBestYears().subList(0, numItems);
     }
 
-    public List<WineEntity> findByYear(String year){
+    public List<WineEntity> findByYear(String year) {
         return wineRepository.findByYear(year);
-    }*/
+    }
 
+    public List<String> findBestYear(Pageable pageable) {
+        return wineRepository.findBestYear(pageable);
+    }
+
+    public List<WineEntity> findTopYears(String year) {
+        return wineRepository.findTopBestWine(year);
+    }
 
 
 }
