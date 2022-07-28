@@ -10,7 +10,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/wine")
+@RequestMapping("/api/wine")
 public class WineController {
 
     @Autowired

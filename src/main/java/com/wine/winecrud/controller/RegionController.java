@@ -13,7 +13,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/region")
+@RequestMapping("/api/region")
 public class RegionController {
 
     @Autowired

@@ -23,7 +23,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/recommend")
+@RequestMapping("/api/recommend")
 public class RecommendController {
 
     @Autowired

@@ -12,7 +12,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/type")
+@RequestMapping("/api/type")
 public class TypeController {
 
     @Autowired
