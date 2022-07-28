@@ -20,19 +20,17 @@ public interface WineRepository extends JpaRepository<WineEntity, Integer> {
     List<WineEntity> bestVintage();
 
 
-
     @Query(value = "select year from wine group by year order by avg(rating) desc", nativeQuery = true)
     List<String> findBestYears();
 
-   List<WineEntity> findByYear(String year);
-
+    List<WineEntity> findByYear(String year);
 
 
     @Query(value = " select year from wine group by year order by avg(rating) DESC, year", nativeQuery = true)
     List<String> findBestYear(Pageable pageable);
 
     @Query(value = " select w from WineEntity w where w.year = ?1 order by w.rating")
-    List<WineEntity> findTopBestWine(Pageable pageable,String year);
+    List<WineEntity> findTopBestWine(String year);
 
 
 }

@@ -24,16 +24,16 @@ public class WineEntity {
     @Max(2022)
     private String year;
 
-    @NotNull( message = "rating is mandatory")
+    @NotNull(message = "rating is mandatory")
     @Min(0)
     @Max(5)
     private float rating;
 
-    @NotNull( message = "Number of reviews is mandatory")
+    @NotNull(message = "Number of reviews is mandatory")
     @Min(0)
     private int num_reviews;
 
-    @NotNull( message = "Price is mandatory")
+    @NotNull(message = "Price is mandatory")
     @Min(0)
     private float price;
 
@@ -47,16 +47,16 @@ public class WineEntity {
     @Max(5)
     private String acidity;
 
-    @NotNull( message = "Winery id is mandatory")
+    @NotNull(message = "Winery id is mandatory")
     @Min(0)
     private int winery_id;
 
 
-    @NotNull( message = "Type id is mandatory")
+    @NotNull(message = "Type id is mandatory")
     @Min(0)
     private int type_id;
 
-    @NotNull( message = "Region id is mandatory")
+    @NotNull(message = "Region id is mandatory")
     @Min(0)
     private int region_id;
 

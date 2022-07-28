@@ -30,10 +30,8 @@ public class RecommendController {
     WineService wineService;
 
 
-
-
     @GetMapping("/bang")
-    public ResponseEntity<List<WineEntity>> getBestRatedWines(@RequestParam int top){
+    public ResponseEntity<List<WineEntity>> getBestRatedWines(@RequestParam int top) {
         List<WineEntity> wines = wineService.topRatingPrice();
 
         Stream<WineEntity> w = wines.stream().limit(top);
@@ -41,38 +39,14 @@ public class RecommendController {
         return new ResponseEntity<>(w.collect(Collectors.toList()), HttpStatus.OK);
     }
 
-    /*@GetMapping("/vintage2")
-    public ResponseEntity<List<WineEntity>> getVintage(@RequestParam int top) {
-        List<WineEntity> wines = wineService.topVintage();
-
-        Stream<WineEntity> w = wines.stream().limit(top);
-
-        return new ResponseEntity<>(w.collect(Collectors.toList()), HttpStatus.OK);
-    }*/
-
-    /*@GetMapping("/vintage")
-
-    public ResponseEntity<Map<String, List<WineEntity>>> getVintageWine(@RequestParam int top){
-
-        Map<String, List<WineEntity>> map = new HashMap<>();
-
-        wineService.findBestYear(PageRequest.of(0,top)).forEach(s -> map.put(s, wineService.findTopYears(s)));
-        List<String> years = wineService.findWineBestYear(top);
-
-        for(String year : years){
-            map.put(year, wineService.findByYear(year));
-        }
-        return new ResponseEntity<>(map, HttpStatus.OK);
-
-    }*/
 
     @GetMapping("/vintage")
-    Object topVintage(@RequestParam int top){
+    Object topVintage(@RequestParam int top) {
 
-        var years = wineService.findBestYear(PageRequest.of(0,top));
+        var years = wineService.findBestYear(PageRequest.of(0, top));
         Map<String, List<WineEntity>> map = new HashMap<>();
-        for(String year : years){
-            map.put(year, wineService.findByYear(year));
+        for (String year : years) {
+            map.put(year, wineService.findTopYears(year));
 
         }
         return map;
@@ -80,12 +54,10 @@ public class RecommendController {
     }
 
 
-
-
     @GetMapping("/best")
     public List<WineEntity> getBestWines() {
 
-        List<WineEntity> wines=
+        List<WineEntity> wines =
                 wineService.findAllWines()
                         .stream()
                         .sorted(Collections.reverseOrder(Comparator.comparing(WineEntity::getRating))).limit(10)
@@ -97,7 +69,7 @@ public class RecommendController {
     @GetMapping("/best/{top}")
     public List<WineEntity> getBestWinesTopX(@PathVariable("top") int top) {
 
-        List<WineEntity> wines= wineService.findAllWines().stream().sorted(Collections.reverseOrder(Comparator.comparing(WineEntity::getRating))).limit(top).collect(Collectors.toList());
+        List<WineEntity> wines = wineService.findAllWines().stream().sorted(Collections.reverseOrder(Comparator.comparing(WineEntity::getRating))).limit(top).collect(Collectors.toList());
 
         return wines;
     }
@@ -105,7 +77,7 @@ public class RecommendController {
     @GetMapping("/expensive")
     public List<WineEntity> getExpensiveWines() {
 
-        List<WineEntity> wines= wineService.findAllWines().stream().sorted(Collections.reverseOrder(Comparator.comparing(WineEntity::getPrice))).limit(10).collect(Collectors.toList());
+        List<WineEntity> wines = wineService.findAllWines().stream().sorted(Collections.reverseOrder(Comparator.comparing(WineEntity::getPrice))).limit(10).collect(Collectors.toList());
 
         return wines;
     }
@@ -113,7 +85,7 @@ public class RecommendController {
 
     @GetMapping("/expensive/{top}")
     public List<WineEntity> getExpensiveWinesTopX(@PathVariable("top") int top) {
-        List<WineEntity> wines= wineService.findAllWines().stream().sorted(Collections.reverseOrder(Comparator.comparing(WineEntity::getPrice))).limit(top).collect(Collectors.toList());
+        List<WineEntity> wines = wineService.findAllWines().stream().sorted(Collections.reverseOrder(Comparator.comparing(WineEntity::getPrice))).limit(top).collect(Collectors.toList());
 
         return wines;
     }
