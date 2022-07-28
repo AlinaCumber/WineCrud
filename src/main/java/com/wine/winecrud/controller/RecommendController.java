@@ -4,6 +4,7 @@ package com.wine.winecrud.controller;
 import com.wine.winecrud.entity.WineEntity;
 import com.wine.winecrud.repository.WineRepository;
 import com.wine.winecrud.service.WineService;
+import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -29,12 +30,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 import java.util.stream.Collectors;
 
 
 @RestController
-@RequestMapping("/recommend")
+@RequestMapping("/api/recommend")
 public class RecommendController {
 
     @Autowired
@@ -76,18 +78,43 @@ public class RecommendController {
 
     }*/
 
+    /*
+    @GetMapping("/best")
+    public ResponseEntity<List<WineEntity>> getBestWines() {
+        List<WineEntity> wines = wineService.topWines();
+
+        Stream<WineEntity> w = wines.stream().limit(10);
+
+        return new ResponseEntity<>(w.collect(Collectors.toList()), HttpStatus.OK);
+    }
+
+     */
 
 
-
-
+    /*
     @GetMapping("/best")
     public List<WineEntity> getBestWines() {
 
-        List<WineEntity> wines= wineService.findAllWines().stream().sorted(Collections.reverseOrder(Comparator.comparing(WineEntity::getRating))).limit(10).collect(Collectors.toList());
+        List<WineEntity> wines= wineService.findAllWines()
+                                .stream()
+                                .sorted(Collections.reverseOrder(Comparator.comparing(WineEntity::getRating).thenComparing(WineEntity::getNum_reviews)))
+                                .limit(10)
+                                .collect(Collectors.toList());
 
         return wines;
     }
+    */
 
+    @GetMapping("/best")
+    public ResponseEntity<List<WineEntity>> getBestWinesTopX(@RequestParam int top) {
+        List<WineEntity> wines = wineService.topWines();
+
+        Stream<WineEntity> w = wines.stream().limit(top);
+
+        return new ResponseEntity<>(w.collect(Collectors.toList()), HttpStatus.OK);
+    }
+
+    /*
     @GetMapping("/best/{top}")
     public List<WineEntity> getBestWinesTopX(@PathVariable("top") int top) {
 
@@ -96,6 +123,21 @@ public class RecommendController {
         return wines;
     }
 
+     */
+
+    /*
+    @GetMapping("/expensive")
+    public ResponseEntity<List<WineEntity>> getExpensiveWines() {
+        List<WineEntity> wines = wineService.topExpensiveWines();
+
+        Stream<WineEntity> w = wines.stream().limit(10);
+
+        return new ResponseEntity<>(w.collect(Collectors.toList()), HttpStatus.OK);
+    }
+    */
+
+
+    /*
     @GetMapping("/expensive")
     public List<WineEntity> getExpensiveWines() {
 
@@ -103,14 +145,25 @@ public class RecommendController {
 
         return wines;
     }
+     */
+
+    @GetMapping("/expensive")
+    public ResponseEntity<List<WineEntity>> getExpensiveWinesTopX(@RequestParam int top) {
+        List<WineEntity> wines = wineService.topExpensiveWines();
+
+        Stream<WineEntity> w = wines.stream().limit(top);
+
+        return new ResponseEntity<>(w.collect(Collectors.toList()), HttpStatus.OK);
+    }
 
 
+    /*
     @GetMapping("/expensive/{top}")
     public List<WineEntity> getExpensiveWinesTopX(@PathVariable("top") int top) {
         List<WineEntity> wines= wineService.findAllWines().stream().sorted(Collections.reverseOrder(Comparator.comparing(WineEntity::getPrice))).limit(top).collect(Collectors.toList());
 
         return wines;
     }
-
+    */
 
 }

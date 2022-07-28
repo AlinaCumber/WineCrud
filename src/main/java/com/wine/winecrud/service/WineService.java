@@ -42,6 +42,14 @@ public class WineService {
         return wineRepository.bestVintage();
     }
 
+    public List<WineEntity> topWines(){
+        return wineRepository.topWines();
+    }
+
+    public List<WineEntity> topExpensiveWines(){
+        return wineRepository.topExpensiveWines();
+    }
+
    /*public List<Object[]> findBestYear(Pageable pageable){
         return wineRepository.findBestYear(pageable);
     }

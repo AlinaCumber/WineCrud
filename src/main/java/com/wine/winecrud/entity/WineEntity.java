@@ -1,6 +1,8 @@
 package com.wine.winecrud.entity;
 
 
+import com.wine.winecrud.validation.MaxCurrentYear;
+
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -21,7 +23,7 @@ public class WineEntity {
 
     @NotBlank(message = "Year is mandatory")
     @Min(1900)
-    @Max(2022)
+    @MaxCurrentYear
     private String year;
 
     @NotNull( message = "rating is mandatory")

@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.NamedNativeQuery;
 import java.util.List;
 
 @Repository
@@ -18,6 +19,13 @@ public interface WineRepository extends JpaRepository<WineEntity, Integer> {
 
     @Query(value = " select * from wine group by year order by rating DESC ", nativeQuery = true)
     List<WineEntity> bestVintage();
+    //@NamedNativeQuery()
+
+    @Query(value = " select * from wine order by rating DESC, num_reviews DESC", nativeQuery = true)
+    List<WineEntity> topWines();
+
+    @Query(value = " select * from wine order by price DESC", nativeQuery = true)
+    List<WineEntity> topExpensiveWines();
 
    /* @Query(value = "select year as year, avg(w.rating) as average from wine w group by w.year order by average desc , w.year")
     List<Object[]> findBestYear(Pageable pageable);*/
